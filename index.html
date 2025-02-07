@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vuln Site</title>
+</head>
+<body>
+    <script>
+        // Create a new Blob object using a string
+        const textBlob = new Blob([""], { type: "text/plain" });
+        // Create a link element
+        const downloadLink = document.createElement("a");
+        // Set the download attribute with the filename
+        downloadLink.download = "test.txt";
+        // Create a URL for the Blob and set it as the href attribute
+        downloadLink.href = window.URL.createObjectURL(textBlob);
+        // Append the link to the document body
+        document.body.appendChild(downloadLink);
+        // Programmatically click the link to trigger the download
+        downloadLink.click();
+        // Remove the link from the document
+        document.body.removeChild(downloadLink);
+    </script>
+</body>
+</html>
